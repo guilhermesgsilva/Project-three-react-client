@@ -34,7 +34,7 @@ function AddProject() {
 
   return (
     <>
-      <h2>Add Project</h2>
+      <h1>Add Project</h1>
       <form onSubmit={handleFormSubmit} encType="multipart/form-data">
         <label>Title</label>
         <input
