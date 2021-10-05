@@ -3,16 +3,16 @@ import { useHistory, NavLink } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-function Login({ setCurrentLoggedInUser }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+function Login({ setLoggedInUser }) {
+  const [userName, setUserName] = useState("");
+  const [userPassword, setUserPassword] = useState("");
   const history = useHistory();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const body = {
-      username,
-      password,
+      userName,
+      userPassword,
     };
     try {
       const response = await axios.post(
@@ -20,10 +20,10 @@ function Login({ setCurrentLoggedInUser }) {
         body,
         { withCredentials: true }
       );
-      if (response.data.username) {
+      if (response.data.userName) {
         toast.success("Login success");
-        setCurrentLoggedInUser(response.data); //Comes from the app component
-        history.push("/projects");
+        setLoggedInUser(response.data); //Comes from the app component
+        history.push("/jams");
       }
     } catch (e) {
       toast.error("Invalid login");
@@ -32,25 +32,32 @@ function Login({ setCurrentLoggedInUser }) {
 
   return (
     <>
-      <h2>Login</h2>
-      <form onSubmit={handleFormSubmit}>
-        <label>Username</label>
-        <input
-          type="text"
-          onChange={(e) => setUsername(e.target.value)}
-          value={username}
-        />
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-12">
+          <h2>Login</h2>
+          <form onSubmit={handleFormSubmit}>
+            <label>username</label>
+            <input
+              type="text"
+              onChange={(e) => setUserName(e.target.value)}
+              value={userName}
+            />
 
-        <label>Password</label>
-        <input
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
+            <label>password</label>
+            <input
+              type="password"
+              onChange={(e) => setUserPassword(e.target.value)}
+              value={userPassword}
+            />
 
-        <button type="submit">Login</button>
-      </form>
-      Don't have an account? Register <NavLink to="/signup">here</NavLink>
+            <button type="submit">Log In</button>
+          </form>
+          <p>Don't have an account? <NavLink to="/signup">Sign Up</NavLink></p>
+        </div>
+      </div>
+    </div>
+      
     </>
   );
 }

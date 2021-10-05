@@ -4,42 +4,58 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 function Signup() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("");
+  const [userPassword, setUserPassword] = useState("");
   const history = useHistory();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const body = {
-      username,
-      password,
+      userName,
+      userPassword,
     };
-    await axios.post(`${process.env.REACT_APP_SERVER_HOSTNAME}/signup`, body);
-    toast.success("Signup success");
-    history.push("/projects");
+
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_SERVER_HOSTNAME}/signup`,
+        body
+      );
+      toast.success("Signup success");
+      history.push("/login");
+    } catch (e) {
+      toast.error(e.response.data.message);
+    }
   };
 
   return (
     <>
-      <h2>Signup</h2>
-      <form onSubmit={handleFormSubmit}>
-        <label>Username</label>
-        <input
-          type="text"
-          onChange={(e) => setUsername(e.target.value)}
-          value={username}
-        />
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-12">
+            <h2>Sign Up</h2>
+            <form onSubmit={handleFormSubmit}>
+              <label>username</label>
+              <input
+                type="text"
+                onChange={(e) => setUserName(e.target.value)}
+                value={userName}
+              />
 
-        <label>Password</label>
-        <input
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
+              <label>password</label>
+              <input
+                type="password"
+                onChange={(e) => setUserPassword(e.target.value)}
+                value={userPassword}
+              />
 
-        <button type="submit">Signup</button>
-      </form>
-      Already have an account? Login <NavLink to="/login">here</NavLink>
+              <button type="submit">Sign Up</button>
+            </form>
+            <p>
+              Already have an account? <NavLink to="/login">Log In</NavLink>
+            </p>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
