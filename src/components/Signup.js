@@ -39,6 +39,7 @@ function Signup() {
                 type="text"
                 onChange={(e) => setUserName(e.target.value)}
                 value={userName}
+                required
               />
 
               <label>password</label>
@@ -46,6 +47,7 @@ function Signup() {
                 type="password"
                 onChange={(e) => setUserPassword(e.target.value)}
                 value={userPassword}
+                required
               />
 
               <button type="submit">Sign Up</button>

@@ -42,6 +42,7 @@ function Login({ setLoggedInUser }) {
               type="text"
               onChange={(e) => setUserName(e.target.value)}
               value={userName}
+              required
             />
 
             <label>password</label>
@@ -49,6 +50,7 @@ function Login({ setLoggedInUser }) {
               type="password"
               onChange={(e) => setUserPassword(e.target.value)}
               value={userPassword}
+              required
             />
 
             <button type="submit">Log In</button>

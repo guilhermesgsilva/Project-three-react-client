@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function About() {
     return (
@@ -34,6 +35,7 @@ function About() {
                             <li>When ending a tune, look to the Bass or piano player for signs as to which type of ending will be used. Is it the 3 times a charm ending? Or that everybody stops at the same time with tight cut off ending? Is the rhythm section going to put a turn around at the end and vamp for a while ending? Turn on your radar.</li>
                         </ol>
                         <h6>Good Luck and have fun!</h6>
+                        <NavLink exact to="/jams">Let's jam!</NavLink>
                     </div>
                 </div>
             </div>

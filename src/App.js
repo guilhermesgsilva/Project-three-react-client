@@ -5,6 +5,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import { LoggedUserProvider } from "./context/loggedUser";
+import PrivateRoute from "./routes/PrivateRoute";
 
 import NavBar from "./components/NavBar";
 import Cover from "./components/Cover";
@@ -12,16 +14,13 @@ import About from "./components/About";
 import Footer from "./components/Footer";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
-// import AddProject from "./components/project/AddProject";
-// import EditProject from "./components/project/EditProject";
-// import ListProjects from "./components/project/ListProjects";
-// import ProjectDetails from "./components/project/ProjectDetails";
 import ListJams from "./components/jam/ListJams";
 import JamDetails from "./components/jam/JamDetails";
 import AddJam from "./components/jam/AddJam";
 import EditJam from "./components/jam/EditJam";
 import ProfileDetails from "./components/user/ProfileDetails";
 import EditProfile from "./components/user/EditProfile";
+import ListUsers from "./components/user/ListUsers";
 import UserDetails from "./components/user/UserDetails";
 
 
@@ -44,47 +43,27 @@ function App() {
   return (
     <>
       <ToastContainer />
-      <NavBar loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
-      <Switch>
-        {/* <Route exact path={["/", "/projects"]} component={ListProjects} /> */}
-        {/* <Route exact path="/projects/add" component={AddProject} /> */}
-        {/* <Route exact path="/projects/:id" component={ProjectDetails} /> */}
-        {/* <Route path="/projects/:id/edit" component={EditProject} /> */}
-        <Route exact path={["/"]} component={Cover} />
-        <Route exact path={["/about"]} component={About} />
-        <Route path="/signup" component={Signup} />
-        <Route
-          path="/login"
-          render={() => {
-            return <Login setLoggedInUser={setLoggedInUser} />;
-          }}
-        />
-        <Route exact path={["/jams"]} component={ListJams} />
-        <Route exact path={["/jams/add"]} component={AddJam} />
-        <Route exact path={["/jams/:jamId"]} component={JamDetails} />
-        <Route exact path={["/jams/:jamId/edit"]} component={EditJam} />
-        <Route 
-          exact path={["/profile"]} 
-          render={() => {
-            return <ProfileDetails loggedInUser={loggedInUser} />;
-          }}
-        />
-        <Route exact path={["/profile/edit"]} component={EditProfile} />
-        <Route exact path={["/users/:userId"]} component={UserDetails} />
-      </Switch>
-      <Footer />
+        <LoggedUserProvider value={loggedInUser}>
+          <NavBar setLoggedInUser={setLoggedInUser} />
+          <Switch>
+            <Route exact path="/" component={Cover} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/login" render={() => {return <Login setLoggedInUser={setLoggedInUser} /> }} />
+            <PrivateRoute exact path="/jams" component={ListJams} />
+            <Route exact path="/jams/add" component={AddJam} />
+            <PrivateRoute exact path="/jams/:jamId" component={JamDetails} />
+            {/* <Route exact path="/jams/:jamId" render={() => {return <JamDetails setLoggedInUser={setLoggedInUser} /> }} /> */}
+            <Route exact path="/jams/:jamId/edit" component={EditJam} />
+            <PrivateRoute exact path="/profile" component={ProfileDetails} />
+            <Route exact path="/profile/edit" render={() => {return <EditProfile setLoggedInUser={setLoggedInUser} /> }} />
+            <Route exact path="/users" component={ListUsers} />
+            <Route exact path="/users/:userId" component={UserDetails} />
+          </Switch>
+          <Footer />
+        </LoggedUserProvider>
     </>
   );
 }
 
 export default App;
-
-/*
-<div className="container-fluid">
-    <div className="row">
-        <div className="col-12">
-
-        </div>
-    </div>
-</div>
-*/

@@ -2,9 +2,12 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import { LoggedUserConsumer } from "../context/loggedUser";
 
 
-function NavBar({ loggedInUser, setLoggedInUser }) {
+function NavBar({ setLoggedInUser }) {
+  const loggedInUser = useContext(LoggedUserConsumer);
 
   const logoutUser = async () => {
       await axios.post(`${process.env.REACT_APP_SERVER_HOSTNAME}/logout`, null, {
@@ -24,7 +27,7 @@ function NavBar({ loggedInUser, setLoggedInUser }) {
                 <NavLink activeStyle={{ color: "red" }} className="nav-link" exact to="/">Home</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink activeStyle={{ color: "red" }} className="nav-link" exact to="/about">Learn More</NavLink>
+                <NavLink activeStyle={{ color: "red" }} className="nav-link" exact to="/about">About</NavLink>
               </li>
               {loggedInUser && (
                 <>
@@ -32,7 +35,10 @@ function NavBar({ loggedInUser, setLoggedInUser }) {
                     <NavLink activeStyle={{ color: "red" }} className="nav-link" exact to="/jams">Jams</NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink activeStyle={{ color: "red" }} className="nav-link" exact to="/jams/add">+</NavLink>
+                    <NavLink activeStyle={{ color: "red" }} className="nav-link" exact to="/jams/add">Add Jam</NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink activeStyle={{ color: "red" }} className="nav-link" exact to="/users">Users</NavLink>
                   </li>
                 </>
               )}

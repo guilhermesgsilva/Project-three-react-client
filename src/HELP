@@ -1,3 +1,11 @@
-- delete routes
+- list jams/users before search
 
-- logged in user context
+Jam Details
+-creator
+-users
+-join
+
+User Details
+-follow/unfollow
+-jams created
+
