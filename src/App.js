@@ -5,8 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import { LoggedUserProvider } from "./context/loggedUser";
-import PrivateRoute from "./routes/PrivateRoute";
+
 
 import NavBar from "./components/NavBar";
 import Cover from "./components/Cover";
@@ -22,6 +21,9 @@ import ProfileDetails from "./components/user/ProfileDetails";
 import EditProfile from "./components/user/EditProfile";
 import ListUsers from "./components/user/ListUsers";
 import UserDetails from "./components/user/UserDetails";
+
+import { LoggedUserProvider } from "./context/loggedUser";
+import PrivateRoute from "./routes/PrivateRoute";
 
 
 function App() {
@@ -42,8 +44,8 @@ function App() {
 
   return (
     <>
-      <ToastContainer />
         <LoggedUserProvider value={loggedInUser}>
+      <ToastContainer />
           <NavBar setLoggedInUser={setLoggedInUser} />
           <Switch>
             <Route exact path="/" component={Cover} />

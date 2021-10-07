@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 
+
 function EditJam({match}) {
     const [jamCity, setJamCity] = useState("");
     const [jamAddress, setJamAddress] = useState("");
@@ -16,40 +17,70 @@ function EditJam({match}) {
 
     useEffect(() => {
         async function getJam() {
-          const response = await axios.get(
-            `${process.env.REACT_APP_SERVER_HOSTNAME}/jams/${match.params.jamId}`
-          );
-    
-          setJamCity(response.data.jamCity);
-          setJamAddress(response.data.jamAddress);
-          setJamDate(response.data.jamDate);
-          setJamStartTime(response.data.jamStartTime);
-          setJamEndTime(response.data.jamEndTime);
-          setJamPicture(response.data.jamPicture);
-          setJamDescription(response.data.jamDescription);
+            const response = await axios.get(
+                `${process.env.REACT_APP_SERVER_HOSTNAME}/jams/${match.params.jamId}`
+            );
+            console.log(response.data);
+            setJamCity(response.data.jamCity);
+            setJamAddress(response.data.jamAddress);
+            setJamDate(response.data.jamDate);
+            setJamStartTime(response.data.jamStartTime);
+            setJamEndTime(response.data.jamEndTime);
+            setJamPicture(response.data.jamPicture);
+            setJamDescription(response.data.jamDescription);
         }
         getJam();
     }, []);
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        const body = {
-            jamCity,
-            jamAddress,
-            jamDate,
-            jamStartTime,
-            jamEndTime,
-            jamPicture,
-            jamDescription,
-        };
-    
-        await axios.put(
-          `${process.env.REACT_APP_SERVER_HOSTNAME}/jams/${match.params.jamId}/update-details`,
-          body
-        );
-            
-        toast.success("Jam updated");
-        history.push(`/jams/${match.params.jamId}`);
+
+        if (typeof jamPicture !== "string") {
+            const uploadData = new FormData();
+            uploadData.append("file", jamPicture);
+
+            const upload = await axios.post(
+                `${process.env.REACT_APP_SERVER_HOSTNAME}/upload`,
+                uploadData
+            );
+
+            const body = {
+                jamCity,
+                jamAddress,
+                jamDate,
+                jamStartTime,
+                jamEndTime,
+                jamPicture: upload.data.fileUrl,
+                jamDescription,
+            };
+
+            await axios.put(
+                `${process.env.REACT_APP_SERVER_HOSTNAME}/jams/${match.params.jamId}/update-details`,
+                body
+            );
+
+            toast.success("Jam updated");
+            history.push(`/jams/${match.params.jamId}`);
+
+        } else {
+
+            const body = {
+                jamCity,
+                jamAddress,
+                jamDate,
+                jamStartTime,
+                jamEndTime,
+                jamDescription,
+            };
+
+            await axios.put(
+                `${process.env.REACT_APP_SERVER_HOSTNAME}/jams/${match.params.jamId}/update-details`,
+                body
+            );
+
+            toast.success("Jam updated");
+            history.push(`/jams/${match.params.jamId}`);
+        }
     };
 
 
@@ -60,7 +91,7 @@ function EditJam({match}) {
                     <div className="col-12">
                         <h2>Edit Jam</h2>
 
-                        <form onSubmit={handleFormSubmit}>
+                        <form onSubmit={handleFormSubmit} encType="multipart/form-data">
                             <label>Jam City</label>
                             <input
                             type="text"
@@ -102,9 +133,8 @@ function EditJam({match}) {
 
                             <label>Jam Picture Url</label>
                             <input
-                            type="url"
-                            onChange={(e) => setJamPicture(e.target.value)}
-                            value={jamPicture}
+                                type="file"
+                                onChange={(e) => setJamPicture(e.target.files[0])}
                             />
 
                             <label>Jam Description</label>

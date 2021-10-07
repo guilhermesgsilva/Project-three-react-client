@@ -4,7 +4,6 @@ import { LoggedUserConsumer } from "../../context/loggedUser";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-
 function EditProfile({setLoggedInUser}) {
     const loggedInUser = useContext(LoggedUserConsumer);
     const [userTitle, setUserTitle] = useState("");
@@ -29,35 +28,33 @@ function EditProfile({setLoggedInUser}) {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
-        // if (userPicture) {
-        //     const uploadData = new FormData();
-        //     uploadData.append("file", userPicture);
+        if (typeof userPicture !== "string") {
+            const uploadData = new FormData();
+            uploadData.append("file", userPicture);
 
-        //     const upload = await axios.post(
-        //     `${process.env.REACT_APP_SERVER_HOSTNAME}/upload`,
-        //     uploadData
-        //     );
+            const upload = await axios.post(
+            `${process.env.REACT_APP_SERVER_HOSTNAME}/upload`,
+            uploadData
+            );
 
-        //     const body = {
-        //         userTitle,
-        //         userDescription,
-        //         userPicture: upload.data.fileUrl,
-        //     };
+            const body = {
+                userTitle,
+                userDescription,
+                userPicture: upload.data.fileUrl,
+            };
 
-        //     const response = await axios.put(
-        //         `${process.env.REACT_APP_SERVER_HOSTNAME}/users/${loggedInUser._id}/update`,
-        //         body
-        //     );
+            const response = await axios.put(
+                `${process.env.REACT_APP_SERVER_HOSTNAME}/users/${loggedInUser._id}/update`,
+                body
+            );
                   
-        //     setLoggedInUser(response.data);
-        //     toast.success("User updated");
-        //     history.push("/profile");
-        // } else {
+            setLoggedInUser(response.data);
+            toast.success("User updated");
+            history.push("/profile");
+        } else {
             const body = {
             userTitle,
             userDescription,
-            // userPicture: upload.data.fileUrl,
-            userPicture: userPicture,
             };
         
             const response = await axios.put(
@@ -68,7 +65,7 @@ function EditProfile({setLoggedInUser}) {
             setLoggedInUser(response.data);
             toast.success("User updated");
             history.push("/profile");
-        // } 
+        } 
     };
 
     return (
@@ -95,14 +92,9 @@ function EditProfile({setLoggedInUser}) {
 
                             <label>User Picture Url</label>
                             <input
-                                type="url"
-                                onChange={(e) => setUserPicture(e.target.value)}
-                                value={userPicture}
-                            />
-                            {/* <input
                                 type="file"
                                 onChange={(e) => setUserPicture(e.target.files[0])}
-                            /> */}
+                            />
 
                             <button type="submit">Edit</button>
                         </form>

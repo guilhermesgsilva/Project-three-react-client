@@ -14,6 +14,7 @@ function ListJams() {
             { withCredentials: true }
           );
           setJams(response.data);
+          setFilteredJams(response.data);
         }
         getAllJams();
     }, []);

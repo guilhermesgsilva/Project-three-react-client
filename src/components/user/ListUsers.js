@@ -14,6 +14,7 @@ function ListUsers() {
             { withCredentials: true }
           );
           setUsers(response.data);
+          setFilteredUsers(response.data);
         }
         getAllUsers();
     }, []);
