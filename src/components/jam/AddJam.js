@@ -24,7 +24,7 @@ function AddJam() {
         };
         
         await axios.post(`${process.env.REACT_APP_SERVER_HOSTNAME}/jams/create`, body, { withCredentials: true});
-        toast.success("Project created");
+        toast.info("Project created");
         history.push("/jams");
     };
 
@@ -32,7 +32,7 @@ function AddJam() {
         <>
             <div className="container-fluid background-color-light-blue">
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-12 align-items-center">
                         <h2>Add Jam</h2>
 
                         <form onSubmit={handleFormSubmit}>
@@ -43,6 +43,7 @@ function AddJam() {
                             value={jamCity}
                             required
                             />
+                            <br/>
 
                             <label>Jam Address</label>
                             <input
@@ -51,6 +52,7 @@ function AddJam() {
                             value={jamAddress}
                             required
                             />
+                            <br/>
 
                             <label>Jam Date</label>
                             <input
@@ -59,6 +61,7 @@ function AddJam() {
                             value={jamDate}
                             required
                             />
+                            <br/>
 
                             <label>Jam Start Time</label>
                             <input
@@ -67,6 +70,7 @@ function AddJam() {
                             value={jamStartTime}
                             required
                             />
+                            <br/>
 
                             <label>Jam End Time</label>
                             <input
@@ -74,6 +78,7 @@ function AddJam() {
                             onChange={(e) => setJamEndTime(e.target.value)}
                             value={jamEndTime}
                             />
+                            <br/>
 
                             <button type="submit">Create</button>
                         </form>

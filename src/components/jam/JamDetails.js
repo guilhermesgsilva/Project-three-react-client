@@ -34,6 +34,14 @@ function JamDetails({match}) {
         return showJoin;
     }
 
+    function showEdit(){
+        let showEdit = true;
+        if (jam.jamCreator._id !== loggedInUser._id) {
+            showEdit = false;
+        }
+        return showEdit;
+    }
+
     const handleJoinJam = async () => {
         const response = await axios.put(
           `${process.env.REACT_APP_SERVER_HOSTNAME}/jams/${jam._id}/update-users`, null, { withCredentials: true}
@@ -50,17 +58,21 @@ function JamDetails({match}) {
                 {jam.jamCreator && 
                     <div className="container-fluid background-color-light-blue">
                         <div className="row">
-                            <div className="col-12">
-                                <img src={jam.jamPicture} alt="jam cover"/>
-                                <p>Created by: </p>
-                                <p>{jam.jamCreator.userName}</p>
+                            <div className="col-12 align-items-center">
+                                <img className="img-jam" src={jam.jamPicture} alt="jam cover"/>
                                 <p>City: {jam.jamCity}</p>
                                 <p>Adress: {jam.jamAddress}</p>
                                 <p>Date: {jam.jamDate}</p>
                                 <p>Start Time: {jam.jamStartTime}</p>
                                 <p>End Time: {jam.jamEndTime}</p>
                                 <p>About: {jam.jamDescription}</p>
-                                <p>Jam Users:</p>
+                                <h6>Created by:</h6>
+                                <ul>
+                                    <li key={jam.jamCreator._id}>
+                                        <NavLink to={`/users/${jam.jamCreator._id}`}>{jam.jamCreator.userName}</NavLink>
+                                    </li>
+                                </ul>
+                                <h6>Jam Users:</h6>
                                 {jam.jamUsers && 
                                     <ul>
                                         {jam.jamUsers.map((user) => {
@@ -73,7 +85,7 @@ function JamDetails({match}) {
                                     </ul> 
                                 }
                                 {showJoin() && <button onClick={() => handleJoinJam()}>Join</button>}
-                                <NavLink to={`/jams/${jam._id}/edit`}>Edit Jam</NavLink>
+                                {showEdit() && <NavLink to={`/jams/${jam._id}/edit`}>Edit Jam</NavLink>}
                             </div>
                         </div>
                     </div>

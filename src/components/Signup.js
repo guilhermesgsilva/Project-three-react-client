@@ -20,10 +20,10 @@ function Signup() {
         `${process.env.REACT_APP_SERVER_HOSTNAME}/signup`,
         body
       );
-      toast.success("Signup success");
+      toast.info("Signup success");
       history.push("/login");
     } catch (e) {
-      toast.error(e.response.data.message);
+      toast.info(e.response.data.message);
     }
   };
 
@@ -31,7 +31,7 @@ function Signup() {
     <>
       <div className="container-fluid background-color-light-blue">
         <div className="row ">
-          <div className="col-12">
+          <div className="col-12 align-items-center">
             <h2>Sign Up</h2>
             <form onSubmit={handleFormSubmit}>
               <label>username</label>
@@ -41,6 +41,7 @@ function Signup() {
                 value={userName}
                 required
               />
+              <br/>
 
               <label>password</label>
               <input
@@ -49,6 +50,7 @@ function Signup() {
                 value={userPassword}
                 required
               />
+              <br/>
 
               <button type="submit">Sign Up</button>
             </form>

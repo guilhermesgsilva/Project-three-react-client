@@ -27,7 +27,7 @@ function ListUsers() {
         <>
             <div className="container-fluid background-color-light-blue">
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-12 align-items-center">
                         <SearchUsers filterUsers={filterUsers} />
                         {filteredUsers.length > 0 ? (
                             <ul>

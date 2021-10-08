@@ -59,7 +59,7 @@ function EditJam({match}) {
                 body
             );
 
-            toast.success("Jam updated");
+            toast.info("Jam updated");
             history.push(`/jams/${match.params.jamId}`);
 
         } else {
@@ -78,7 +78,7 @@ function EditJam({match}) {
                 body
             );
 
-            toast.success("Jam updated");
+            toast.info("Jam updated");
             history.push(`/jams/${match.params.jamId}`);
         }
     };
@@ -88,7 +88,7 @@ function EditJam({match}) {
         <>
             <div className="container-fluid background-color-light-blue">
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-12 align-items-center">
                         <h2>Edit Jam</h2>
 
                         <form onSubmit={handleFormSubmit} encType="multipart/form-data">
@@ -99,6 +99,7 @@ function EditJam({match}) {
                             value={jamCity}
                             required
                             />
+                            <br/>
 
                             <label>Jam Address</label>
                             <input
@@ -107,6 +108,7 @@ function EditJam({match}) {
                             value={jamAddress}
                             required
                             />
+                            <br/>
 
                             <label>Jam Date</label>
                             <input
@@ -115,6 +117,7 @@ function EditJam({match}) {
                             value={jamDate}
                             required
                             />
+                            <br/>
 
                             <label>Jam Start Time</label>
                             <input
@@ -123,6 +126,7 @@ function EditJam({match}) {
                             value={jamStartTime}
                             required
                             />
+                            <br/>
 
                             <label>Jam End Time</label>
                             <input
@@ -130,6 +134,7 @@ function EditJam({match}) {
                             onChange={(e) => setJamEndTime(e.target.value)}
                             value={jamEndTime}
                             />
+                            <br/>
 
                             <label>Jam Picture</label>
                             <input
@@ -138,6 +143,7 @@ function EditJam({match}) {
                                 accept="image/jpeg"
                                 onChange={(e) => setJamPicture(e.target.files[0])}
                             />
+                            <br/>
 
                             <label>Jam Description</label>
                             <input
@@ -145,6 +151,7 @@ function EditJam({match}) {
                             onChange={(e) => setJamDescription(e.target.value)}
                             value={jamDescription}
                             />
+                            <br/>
 
                             <button type="submit">Edit</button>
                         </form>

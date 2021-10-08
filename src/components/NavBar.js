@@ -14,7 +14,7 @@ function NavBar({ setLoggedInUser }) {
         withCredentials: true,
       });
       setLoggedInUser("");
-      toast.success("User logged out");
+      toast.info("User logged out");
   };
 
   return (
@@ -45,11 +45,9 @@ function NavBar({ setLoggedInUser }) {
             </ul>
           </div>
           <div className="col-4">
-            <ul className="nav justify-content-center">
-              <li className="nav-item">
-                
-              </li>
-            </ul>
+            <div className="nav justify-content-center">
+              <img className="nav-item logo" src="/jam-session-logo.jpg" alt="jam-session-logo"/>
+            </div>
           </div>
           <div className="col-4">
             <ul className="nav justify-content-end">

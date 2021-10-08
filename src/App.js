@@ -53,7 +53,7 @@ function App() {
             pauseOnFocusLoss
             draggable
             pauseOnHover
-            theme={"dark"}
+            // theme={"colored"}
           />
           <NavBar setLoggedInUser={setLoggedInUser} />
           <Switch>
@@ -61,14 +61,15 @@ function App() {
             <Route exact path="/about" component={About} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/login" render={() => {return <Login setLoggedInUser={setLoggedInUser} /> }} />
-            <PrivateRoute exact path="/jams" component={ListJams} />
+            <Route exact path="/jams" component={ListJams} />
             <Route exact path="/jams/add" component={AddJam} />
-            <PrivateRoute exact path="/jams/:jamId" component={JamDetails} />
+            <Route exact path="/jams/:jamId" component={JamDetails} />
             <Route exact path="/jams/:jamId/edit" component={EditJam} />
-            <PrivateRoute exact path="/profile" component={ProfileDetails} />
+            <Route exact path="/profile" component={ProfileDetails} />
             <Route exact path="/profile/edit" render={() => {return <EditProfile setLoggedInUser={setLoggedInUser} /> }} />
             <Route exact path="/users" component={ListUsers} />
-            <Route exact path="/users/:userId" component={UserDetails} />
+            {/* <Route exact path="/users/:userId" component={UserDetails} /> */}
+            <Route exact path="/users/:userId" render={(props) => {return <UserDetails {...props} setLoggedInUser={setLoggedInUser} /> }} />
           </Switch>
           <Footer />
         </LoggedUserProvider>

@@ -25,15 +25,15 @@ function ProfileDetails() {
                     {user && 
                         <div className="container-fluid background-color-light-blue">
                             <div className="row">
-                                <div className="col-12">
-                                    <img src={user.userPicture} alt={user.userName} />
+                                <div className="col-12 align-items-center">
+                                    <img className="img-profile" src={user.userPicture} alt={user.userName} />
                                     <h2>{user.userTitle}</h2>
                                     <h4>@{user.userName}</h4>
                                     <p>{user.userDescription}</p>
                                 
                                     <NavLink to={`/profile/edit`}>Edit Profile</NavLink>
 
-                                    <h3>Following:</h3>
+                                    <h6>Following:</h6>
                                     {user.userFollows &&
                                     <ul>
                                         {user.userFollows.map((user) => {
@@ -45,7 +45,7 @@ function ProfileDetails() {
                                         })}
                                     </ul>
                                     }
-                                    <h3>My Jams:</h3>
+                                    <h6>Jams Attending:</h6>
                                     {user.userJams &&
                                     <ul>
                                         {user.userJams.slice(0).reverse().map((jam) => {

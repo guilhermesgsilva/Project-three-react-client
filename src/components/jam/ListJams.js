@@ -27,7 +27,7 @@ function ListJams() {
         <>
             <div className="container-fluid background-color-light-blue">
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-12 align-items-center">
                         <SearchJams filterJams={filterJams}/>
                         {filteredJams.length > 0 ? (
                             <ul>

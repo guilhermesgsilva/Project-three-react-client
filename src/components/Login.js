@@ -21,12 +21,12 @@ function Login({ setLoggedInUser }) {
         { withCredentials: true }
       );
       if (response.data.userName) {
-        toast.success("Login success");
+        toast.info("Login success");
         setLoggedInUser(response.data); //Comes from the app component
         history.push("/profile");
       }
     } catch (e) {
-      toast.error("Invalid login");
+      toast.info("Invalid login");
     }
   };
 
@@ -34,7 +34,7 @@ function Login({ setLoggedInUser }) {
     <>
     <div className="container-fluid background-color-light-blue">
       <div className="row">
-        <div className="col-12">
+        <div className="col-12 align-items-center">
           <h2>Login</h2>
           <form onSubmit={handleFormSubmit}>
             <label>username</label>
@@ -44,6 +44,7 @@ function Login({ setLoggedInUser }) {
               value={userName}
               required
             />
+            <br/>
 
             <label>password</label>
             <input
@@ -52,6 +53,7 @@ function Login({ setLoggedInUser }) {
               value={userPassword}
               required
             />
+            <br/>
 
             <button type="submit">Log In</button>
           </form>

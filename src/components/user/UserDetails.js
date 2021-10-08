@@ -5,7 +5,7 @@ import { LoggedUserConsumer } from "../../context/loggedUser";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 
-function UserDetails({ match }) {
+function UserDetails({ match, setLoggedInUser }) {
   const [user, setUser] = useState({});
   const loggedInUser = useContext(LoggedUserConsumer);
   console.log(loggedInUser.userFollows);
@@ -28,6 +28,7 @@ function UserDetails({ match }) {
       loggedInUser.userFollows.forEach((userFollow) => {
         if (user._id === userFollow._id) {
           showFollow = false;
+        } else {
         }
       });
     }
@@ -43,7 +44,6 @@ function UserDetails({ match }) {
     }
     return showButton;
   }
-  
 
   const handleFollow = async () => {
     const response = await axios.put(
@@ -51,7 +51,7 @@ function UserDetails({ match }) {
       null,
       { withCredentials: true }
     );
-    
+    setLoggedInUser(response.data);
     toast.info("User Followed");
     history.push(`/users/${user._id}`);
   };
@@ -62,7 +62,7 @@ function UserDetails({ match }) {
       null,
       { withCredentials: true }
     );
-    
+    setLoggedInUser(response.data);
     toast.info("User Unfollowed");
     history.push(`/users/${user._id}`);
   };
@@ -72,10 +72,10 @@ function UserDetails({ match }) {
       {user.userName ? (
         <div className="container-fluid background-color-light-blue">
           <div className="row">
-            <div className="col-12">
-              <img src={user.userPicture} alt={user.userName} />
-              <p>{user.userTitle}</p>
-              <p>@{user.userName}</p>
+            <div className="col-12 align-items-center">
+              <img className="img-profile" src={user.userPicture} alt={user.userName} />
+              <h2>{user.userTitle}</h2>
+              <h4>@{user.userName}</h4>
               <p>{user.userDescription}</p>
 
               {showButton() && (
@@ -89,7 +89,7 @@ function UserDetails({ match }) {
               )}
               
 
-              <p>Jams:</p>
+              <h6>Jams Created:</h6>
                   {user.userJamsCreated && (
                     <ul>
                       {user.userJamsCreated.map((jam) => {
