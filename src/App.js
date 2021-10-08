@@ -5,8 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-
-
 import NavBar from "./components/NavBar";
 import Cover from "./components/Cover";
 import About from "./components/About";
@@ -45,7 +43,18 @@ function App() {
   return (
     <>
         <LoggedUserProvider value={loggedInUser}>
-      <ToastContainer />
+          <ToastContainer 
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme={"dark"}
+          />
           <NavBar setLoggedInUser={setLoggedInUser} />
           <Switch>
             <Route exact path="/" component={Cover} />
@@ -55,7 +64,6 @@ function App() {
             <PrivateRoute exact path="/jams" component={ListJams} />
             <Route exact path="/jams/add" component={AddJam} />
             <PrivateRoute exact path="/jams/:jamId" component={JamDetails} />
-            {/* <Route exact path="/jams/:jamId" render={() => {return <JamDetails setLoggedInUser={setLoggedInUser} /> }} /> */}
             <Route exact path="/jams/:jamId/edit" component={EditJam} />
             <PrivateRoute exact path="/profile" component={ProfileDetails} />
             <Route exact path="/profile/edit" render={() => {return <EditProfile setLoggedInUser={setLoggedInUser} /> }} />
@@ -69,3 +77,5 @@ function App() {
 }
 
 export default App;
+
+// { ? () : (<p className="loading">Loading...</p>)}

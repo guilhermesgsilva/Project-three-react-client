@@ -29,8 +29,8 @@ function Signup() {
 
   return (
     <>
-      <div className="container-fluid">
-        <div className="row">
+      <div className="container-fluid background-color-light-blue">
+        <div className="row ">
           <div className="col-12">
             <h2>Sign Up</h2>
             <form onSubmit={handleFormSubmit}>

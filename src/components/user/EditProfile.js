@@ -70,7 +70,7 @@ function EditProfile({setLoggedInUser}) {
 
     return (
         <>
-            <div className="container-fluid">
+            <div className="container-fluid background-color-light-blue">
                 <div className="row">
                     <div className="col-12">
                         <h2>Edit Profile</h2>
@@ -90,9 +90,11 @@ function EditProfile({setLoggedInUser}) {
                                 value={userDescription}
                             />
 
-                            <label>User Picture Url</label>
+                            <label>User Picture</label>
                             <input
                                 type="file"
+                                name="myImage"
+                                accept="image/jpeg"
                                 onChange={(e) => setUserPicture(e.target.files[0])}
                             />
 

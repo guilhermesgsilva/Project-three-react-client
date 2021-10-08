@@ -23,7 +23,7 @@ function Login({ setLoggedInUser }) {
       if (response.data.userName) {
         toast.success("Login success");
         setLoggedInUser(response.data); //Comes from the app component
-        history.push("/jams");
+        history.push("/profile");
       }
     } catch (e) {
       toast.error("Invalid login");
@@ -32,7 +32,7 @@ function Login({ setLoggedInUser }) {
 
   return (
     <>
-    <div className="container-fluid">
+    <div className="container-fluid background-color-light-blue">
       <div className="row">
         <div className="col-12">
           <h2>Login</h2>

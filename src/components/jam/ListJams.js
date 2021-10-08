@@ -25,19 +25,21 @@ function ListJams() {
 
     return (
         <>
-            <div className="container-fluid">
+            <div className="container-fluid background-color-light-blue">
                 <div className="row">
                     <div className="col-12">
                         <SearchJams filterJams={filterJams}/>
-                        <ul>
-                            {filteredJams.slice(0).reverse().map((jam) => {
-                                return (
-                                    <li key={jam._id}>
-                                        <NavLink to={`/jams/${jam._id}`}>Jam at {jam.jamAddress} in {jam.jamCity} City</NavLink>
-                                    </li>
-                                );
-                            })}
-                        </ul>
+                        {filteredJams.length > 0 ? (
+                            <ul>
+                                {filteredJams.slice(0).reverse().map((jam) => {
+                                    return (
+                                        <li key={jam._id}>
+                                            <NavLink to={`/jams/${jam._id}`}>Jam at {jam.jamAddress} in {jam.jamCity} City</NavLink>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        ) : (<p className="loading">Loading...</p>)}
                     </div>
                 </div>
             </div>

@@ -30,7 +30,7 @@ function AddJam() {
 
     return (
         <>
-            <div className="container-fluid">
+            <div className="container-fluid background-color-light-blue">
                 <div className="row">
                     <div className="col-12">
                         <h2>Add Jam</h2>

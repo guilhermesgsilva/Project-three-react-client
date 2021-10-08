@@ -86,7 +86,7 @@ function EditJam({match}) {
 
     return (
         <>
-            <div className="container-fluid">
+            <div className="container-fluid background-color-light-blue">
                 <div className="row">
                     <div className="col-12">
                         <h2>Edit Jam</h2>
@@ -131,9 +131,11 @@ function EditJam({match}) {
                             value={jamEndTime}
                             />
 
-                            <label>Jam Picture Url</label>
+                            <label>Jam Picture</label>
                             <input
                                 type="file"
+                                name="myImage"
+                                accept="image/jpeg"
                                 onChange={(e) => setJamPicture(e.target.files[0])}
                             />
 

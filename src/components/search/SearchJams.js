@@ -10,7 +10,7 @@ function Search ({filterJams}) {
 
     return (
         <form >
-            <label>Search</label>
+            <label >Search</label>
             <input value={search} type="text" onChange={handleSearchInput} placeholder="Search for City"/>
         </form>
     )

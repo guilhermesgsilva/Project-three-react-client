@@ -19,9 +19,9 @@ function NavBar({ setLoggedInUser }) {
 
   return (
     <>
-      <div className="container-fluid">
+      <div className="container-fluid nav-bar">
         <nav className="row">
-          <div className="col-6">
+          <div className="col-4">
             <ul className="nav">
               <li className="nav-item">
                 <NavLink activeStyle={{ color: "red" }} className="nav-link" exact to="/">Home</NavLink>
@@ -30,21 +30,28 @@ function NavBar({ setLoggedInUser }) {
                 <NavLink activeStyle={{ color: "red" }} className="nav-link" exact to="/about">About</NavLink>
               </li>
               {loggedInUser && (
-                <>
-                  <li className="nav-item">
-                    <NavLink activeStyle={{ color: "red" }} className="nav-link" exact to="/jams">Jams</NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink activeStyle={{ color: "red" }} className="nav-link" exact to="/jams/add">Add Jam</NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink activeStyle={{ color: "red" }} className="nav-link" exact to="/users">Users</NavLink>
-                  </li>
-                </>
-              )}
+                  <>
+                    <li className="nav-item">
+                      <NavLink activeStyle={{ color: "red" }} className="nav-link" exact to="/jams">Jams</NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink activeStyle={{ color: "red" }} className="nav-link" exact to="/jams/add">+</NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink activeStyle={{ color: "red" }} className="nav-link" exact to="/users">Users</NavLink>
+                    </li>
+                  </>
+                )}
             </ul>
           </div>
-          <div className="col-6">
+          <div className="col-4">
+            <ul className="nav justify-content-center">
+              <li className="nav-item">
+                
+              </li>
+            </ul>
+          </div>
+          <div className="col-4">
             <ul className="nav justify-content-end">
               {loggedInUser ? (
                 <>

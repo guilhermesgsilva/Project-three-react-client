@@ -1,3 +1,18 @@
+ 
+
+/*
+Colors:
+White: #FFFFFF
+Light Blue: #f1f5f9
+Medium Blue: #204483
+Dark Blue: #081121
+Black: #000000
+
+Fonts:
+
+*/
+
+
 .App {
   text-align: center;
 }
@@ -36,3 +51,16 @@
     transform: rotate(360deg);
   }
 }
+
+.background-color-white {
+  background-color: #FFFFFF;
+}
+
+.background-color-light-blue {
+  background-color: #f1f5f9;
+  min-height: 100vh;
+}
+
+
+
+
