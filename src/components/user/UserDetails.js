@@ -70,38 +70,36 @@ function UserDetails({ match, setLoggedInUser }) {
   return (
     <>
       {user.userName ? (
-        <div className="container-fluid background-color-light-blue">
-          <div className="row">
-            <div className="col-12 align-items-center">
-              <img className="img-profile" src={user.userPicture} alt={user.userName} />
-              <h2>{user.userTitle}</h2>
-              <h4>@{user.userName}</h4>
-              <p>{user.userDescription}</p>
+        <div className="row background-color-light-blue">
+          <div className="col-12 align-items-center">
+            <img className="img-profile" src={user.userPicture} alt={user.userName} />
+            <h2>{user.userTitle}</h2>
+            <h4>@{user.userName}</h4>
+            <p>{user.userDescription}</p>
 
-              {showButton() && (
-                  <>
-                      {showFollow() ? (
-                      <button onClick={() => handleFollow(user._id)}>Follow</button>
-                      ) : (
-                      <button onClick={() => handleUnfollow(user._id)}>Unfollow</button>
-                      )}
-                  </>
-              )}
-              
+            {showButton() && (
+                <>
+                    {showFollow() ? (
+                    <button onClick={() => handleFollow(user._id)}>Follow</button>
+                    ) : (
+                    <button onClick={() => handleUnfollow(user._id)}>Unfollow</button>
+                    )}
+                </>
+            )}
+            
 
-              <h6>Jams Created:</h6>
-                  {user.userJamsCreated && (
-                    <ul>
-                      {user.userJamsCreated.map((jam) => {
-                        return (
-                          <li key={jam._id}>
-                            <NavLink to={`/jams/${jam._id}`}>{jam.jamCity}</NavLink>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  )}
-            </div>
+            <h6>Jams Created:</h6>
+                {user.userJamsCreated && (
+                  <ul>
+                    {user.userJamsCreated.map((jam) => {
+                      return (
+                        <li key={jam._id}>
+                          <NavLink to={`/jams/${jam._id}`}>{jam.jamCity}</NavLink>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
           </div>
         </div>
       ) : (<p className="loading">Loading...</p>)}

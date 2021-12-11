@@ -1,5 +1,7 @@
+import React from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect } from "react";
@@ -23,6 +25,16 @@ import UserDetails from "./components/user/UserDetails";
 import { LoggedUserProvider } from "./context/loggedUser";
 import PrivateRoute from "./routes/PrivateRoute";
 
+import Container from 'react-bootstrap/Container';
+
+import styled from "styled-components";
+
+const Styles = styled.div`
+    .container-fluid {
+        background: url(//images.weserv.nl/?url=i.imgur.com/6QJjYMe.jpg) center no-repeat;
+        background-size:cover;
+    }
+`;
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState("");
@@ -41,7 +53,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <Styles>
         <LoggedUserProvider value={loggedInUser}>
           <ToastContainer 
             position="bottom-right"
@@ -55,28 +67,27 @@ function App() {
             pauseOnHover
             // theme={"colored"}
           />
-          <NavBar setLoggedInUser={setLoggedInUser} />
-          <Switch>
-            <Route exact path="/" component={Cover} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/signup" component={Signup} />
-            <Route exact path="/login" render={() => {return <Login setLoggedInUser={setLoggedInUser} /> }} />
-            <Route exact path="/jams" component={ListJams} />
-            <Route exact path="/jams/add" component={AddJam} />
-            <Route exact path="/jams/:jamId" component={JamDetails} />
-            <Route exact path="/jams/:jamId/edit" component={EditJam} />
-            <Route exact path="/profile" component={ProfileDetails} />
-            <Route exact path="/profile/edit" render={() => {return <EditProfile setLoggedInUser={setLoggedInUser} /> }} />
-            <Route exact path="/users" component={ListUsers} />
-            {/* <Route exact path="/users/:userId" component={UserDetails} /> */}
-            <Route exact path="/users/:userId" render={(props) => {return <UserDetails {...props} setLoggedInUser={setLoggedInUser} /> }} />
-          </Switch>
-          <Footer />
+          <Container fluid>
+            <NavBar setLoggedInUser={setLoggedInUser} />
+            <Switch>
+              <Route exact path="/" component={Cover} />
+              <Route exact path="/about" component={About} />
+              {/* <Route exact path="/signup" component={Signup} />
+              <Route exact path="/login" render={() => {return <Login setLoggedInUser={setLoggedInUser} /> }} /> */}
+              <Route exact path="/jams" component={ListJams} />
+              <Route exact path="/jams/add" component={AddJam} />
+              <Route exact path="/jams/:jamId" component={JamDetails} />
+              <Route exact path="/jams/:jamId/edit" component={EditJam} />
+              <Route exact path="/profile" component={ProfileDetails} />
+              <Route exact path="/profile/edit" render={() => {return <EditProfile setLoggedInUser={setLoggedInUser} /> }} />
+              <Route exact path="/users" component={ListUsers} />
+              <Route exact path="/users/:userId" render={(props) => {return <UserDetails {...props} setLoggedInUser={setLoggedInUser} /> }} />
+            </Switch>
+            <Footer />
+          </Container>
         </LoggedUserProvider>
-    </>
+    </Styles>
   );
 }
 
 export default App;
-
-// { ? () : (<p className="loading">Loading...</p>)}

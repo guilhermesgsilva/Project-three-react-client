@@ -70,40 +70,38 @@ function EditProfile({setLoggedInUser}) {
 
     return (
         <>
-            <div className="container-fluid background-color-light-blue">
-                <div className="row">
-                    <div className="col-12 align-items-center">
-                        <h2>Edit Profile</h2>
-                        
-                        <form onSubmit={handleFormSubmit} encType="multipart/form-data">
-                            <label>User Title</label>
-                            <input
-                                type="text"
-                                onChange={(e) => setUserTitle(e.target.value)}
-                                value={userTitle}
-                            />
-                            <br/>
+            <div className="row background-color-light-blue">
+                <div className="col-12 align-items-center">
+                    <h2>Edit Profile</h2>
+                    
+                    <form onSubmit={handleFormSubmit} encType="multipart/form-data">
+                        <label>User Title</label>
+                        <input
+                            type="text"
+                            onChange={(e) => setUserTitle(e.target.value)}
+                            value={userTitle}
+                        />
+                        <br/>
 
-                            <label>User Description</label>
-                            <input
-                                type="text"
-                                onChange={(e) => setUserDescription(e.target.value)}
-                                value={userDescription}
-                            />
-                            <br/>
+                        <label>User Description</label>
+                        <input
+                            type="text"
+                            onChange={(e) => setUserDescription(e.target.value)}
+                            value={userDescription}
+                        />
+                        <br/>
 
-                            <label>User Picture</label>
-                            <input
-                                type="file"
-                                name="myImage"
-                                accept="image/jpeg"
-                                onChange={(e) => setUserPicture(e.target.files[0])}
-                            />
-                            <br/>
+                        <label>User Picture</label>
+                        <input
+                            type="file"
+                            name="myImage"
+                            accept="image/jpeg"
+                            onChange={(e) => setUserPicture(e.target.files[0])}
+                        />
+                        <br/>
 
-                            <button type="submit">Edit</button>
-                        </form>
-                    </div>
+                        <button type="submit">Edit</button>
+                    </form>
                 </div>
             </div>
         </>

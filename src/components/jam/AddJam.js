@@ -30,59 +30,57 @@ function AddJam() {
 
     return (
         <>
-            <div className="container-fluid background-color-light-blue">
-                <div className="row">
-                    <div className="col-12 align-items-center">
-                        <h2>Add Jam</h2>
+            <div className="row background-color-light-blue">
+                <div className="col-12 align-items-center">
+                    <h2>Add Jam</h2>
 
-                        <form onSubmit={handleFormSubmit}>
-                            <label>Jam City</label>
-                            <input
-                            type="text"
-                            onChange={(e) => setJamCity(e.target.value)}
-                            value={jamCity}
-                            required
-                            />
-                            <br/>
+                    <form onSubmit={handleFormSubmit}>
+                        <label>Jam City</label>
+                        <input
+                        type="text"
+                        onChange={(e) => setJamCity(e.target.value)}
+                        value={jamCity}
+                        required
+                        />
+                        <br/>
 
-                            <label>Jam Address</label>
-                            <input
-                            type="text"
-                            onChange={(e) => setJamAddress(e.target.value)}
-                            value={jamAddress}
-                            required
-                            />
-                            <br/>
+                        <label>Jam Address</label>
+                        <input
+                        type="text"
+                        onChange={(e) => setJamAddress(e.target.value)}
+                        value={jamAddress}
+                        required
+                        />
+                        <br/>
 
-                            <label>Jam Date</label>
-                            <input
-                            type="date"
-                            onChange={(e) => setJamDate(e.target.value)}
-                            value={jamDate}
-                            required
-                            />
-                            <br/>
+                        <label>Jam Date</label>
+                        <input
+                        type="date"
+                        onChange={(e) => setJamDate(e.target.value)}
+                        value={jamDate}
+                        required
+                        />
+                        <br/>
 
-                            <label>Jam Start Time</label>
-                            <input
-                            type="time"
-                            onChange={(e) => setJamStartTime(e.target.value)}
-                            value={jamStartTime}
-                            required
-                            />
-                            <br/>
+                        <label>Jam Start Time</label>
+                        <input
+                        type="time"
+                        onChange={(e) => setJamStartTime(e.target.value)}
+                        value={jamStartTime}
+                        required
+                        />
+                        <br/>
 
-                            <label>Jam End Time</label>
-                            <input
-                            type="time"
-                            onChange={(e) => setJamEndTime(e.target.value)}
-                            value={jamEndTime}
-                            />
-                            <br/>
+                        <label>Jam End Time</label>
+                        <input
+                        type="time"
+                        onChange={(e) => setJamEndTime(e.target.value)}
+                        value={jamEndTime}
+                        />
+                        <br/>
 
-                            <button type="submit">Create</button>
-                        </form>
-                    </div>
+                        <button type="submit">Create</button>
+                    </form>
                 </div>
             </div>
         </>

@@ -25,22 +25,20 @@ function ListUsers() {
 
     return (
         <>
-            <div className="container-fluid background-color-light-blue">
-                <div className="row">
-                    <div className="col-12 align-items-center">
-                        <SearchUsers filterUsers={filterUsers} />
-                        {filteredUsers.length > 0 ? (
-                            <ul>
-                                {filteredUsers.map((user) => {
-                                    return (
-                                        <li key={user._id}>
-                                            <NavLink to={`/users/${user._id}`}>{user.userName}</NavLink>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        ) : (<p className="loading">Loading...</p>)}
-                    </div>
+            <div className="row background-color-light-blue">
+                <div className="col-12 align-items-center">
+                    <SearchUsers filterUsers={filterUsers} />
+                    {filteredUsers.length > 0 ? (
+                        <ul>
+                            {filteredUsers.map((user) => {
+                                return (
+                                    <li key={user._id}>
+                                        <NavLink to={`/users/${user._id}`}>{user.userName}</NavLink>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    ) : (<p className="loading">Loading...</p>)}
                 </div>
             </div>
         </>

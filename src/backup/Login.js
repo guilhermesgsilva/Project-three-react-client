@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-
-function Login(props) {
+function Login({ setLoggedInUser }) {
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const history = useHistory();
@@ -25,7 +22,7 @@ function Login(props) {
       );
       if (response.data.userName) {
         toast.info("Login success");
-        props.setLoggedInUser(response.data); //Comes from the app component
+        setLoggedInUser(response.data); //Comes from the app component
         history.push("/profile");
       }
     } catch (e) {
@@ -35,18 +32,9 @@ function Login(props) {
 
   return (
     <>
-<Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Log In
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+      <div className="row background-color-light-blue">
+        <div className="col-12 align-items-center">
+          <h2>Login</h2>
           <form onSubmit={handleFormSubmit}>
             <label>username</label>
             <input
@@ -66,14 +54,11 @@ function Login(props) {
             />
             <br/>
 
-            <Button type="submit">Log In</Button>
+            <button type="submit">Log In</button>
           </form>
-          <p>
-            Don't have an account? 
-            <Button onClick={() => {props.setLoginShow(false); props.setSignupShow(true)}}>Sign Up</Button>
-          </p>
-        </Modal.Body>
-      </Modal>
+          <p>Don't have an account? <NavLink to="/signup">Sign Up</NavLink></p>
+        </div>
+      </div>      
     </>
   );
 }

@@ -1,13 +1,12 @@
 import React, { useState } from "react";
+import { useHistory, NavLink } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-
-function Signup(props) {
+function Signup() {
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const history = useHistory();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -21,9 +20,8 @@ function Signup(props) {
         `${process.env.REACT_APP_SERVER_HOSTNAME}/signup`,
         body
       );
-      props.setSignupShow(false);
-      props.setLoginShow(true);
       toast.info("Signup success");
+      history.push("/login");
     } catch (e) {
       toast.info(e.response.data.message);
     }
@@ -31,19 +29,10 @@ function Signup(props) {
 
   return (
     <>
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Sign Up
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-        <form onSubmit={handleFormSubmit}>
+      <div className="row background-color-light-blue">
+        <div className="col-12 align-items-center">
+          <h2>Sign Up</h2>
+          <form onSubmit={handleFormSubmit}>
             <label>username</label>
             <input
               type="text"
@@ -62,14 +51,13 @@ function Signup(props) {
             />
             <br/>
 
-            <Button type="submit">Sign Up</Button>
+            <button type="submit">Sign Up</button>
           </form>
           <p>
-            Already have an account?
-            <Button onClick={() => {props.setSignupShow(false); props.setLoginShow(true)}}>Log In</Button>
+            Already have an account? <NavLink to="/login">Log In</NavLink>
           </p>
-        </Modal.Body>
-      </Modal>
+        </div>
+      </div>
     </>
   );
 }
