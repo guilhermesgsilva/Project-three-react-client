@@ -29,6 +29,7 @@ const Styles = styled.div`
   .col {
     display: flex;
     align-items: center;
+    min-height: 10vh;
   }
 
   img {
