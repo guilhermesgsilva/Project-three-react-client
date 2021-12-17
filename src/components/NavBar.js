@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { LoggedUserConsumer } from "../context/loggedUser";
 import logo from "../assets/jam-session-logo.png"
 
+import Radio from "./Radio";
 import Signup from "./Signup";
 import Login from "./Login";
 
@@ -41,41 +42,30 @@ const Styles = styled.div`
   }
 
   img:active {
-    background-color: #F2BB15;
+    background-color: #000000;
   }
 
   .dropdown-toggle:after {
     display: none; 
   }
 
-  .nav-btn {
+
+  .drop-btn {
     border: none;
     background-color: rgba(0,0,0,0);
   }
 
-  .nav-btn:hover {
+  .drop-btn:active {
     border: none;
-    color: #F2BB15;
   }
 
-  .nav-btn:active {
-    border: none;
-    background-color: #F2BB15;
-    color: #000000;
-  }
-
-  .nav-btn:focus {
+  .drop-btn:focus {
     border: none;
     box-shadow: none;
-    background-color: #000000;
   }
 
-  #justify-content-center {
-    justify-content: center;
-  }
-
-  #justify-content-end {
-    justify-content: end;
+  .drop-btn:focus-visible {
+    border: none;
   }
 
   .dropdown-menu {
@@ -83,9 +73,11 @@ const Styles = styled.div`
     border: 1px solid #5A5A5A;
   }
 
+
   .dropdown-divider { 
     color: #5A5A5A;
   }
+
 
   .dropdown-item {
     color: #000000;
@@ -99,6 +91,17 @@ const Styles = styled.div`
   .dropdown-item:hover {
     color: #FFFFFF;
     background-color: #000000;
+  }
+
+
+  #logo-text {
+    font-family: "Caveat";
+    font-size: 2rem;
+    color: #F2BB15;
+  }
+
+  #justify-content-end {
+    justify-content: end;
   }
   
 `;
@@ -124,67 +127,64 @@ function NavBar({ setLoggedInUser }) {
     <Styles>
       <Row>
         <Col>
-          <Nav as="ul">
+          <Nav>
             <Dropdown value="Connect">
-              <Dropdown.Toggle className="nav-btn" >
-                <BsList  />
+              <Dropdown.Toggle className="drop-btn" >
+                <Image src={logo} roundedCircle />
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item><NavLink className="dropdown-item" exact to="/">Home</NavLink></Dropdown.Item>
                 <Dropdown.Item><NavLink className="dropdown-item" exact to="/about">About</NavLink></Dropdown.Item>
-                {loggedInUser &&
+                {loggedInUser ? (
                   <>
                     <Dropdown.Divider />
                     <Dropdown.Item><NavLink className="dropdown-item" exact to="/profile">Profile</NavLink></Dropdown.Item>
                     <Dropdown.Item><NavLink className="dropdown-item" exact to="/jams">Jams</NavLink></Dropdown.Item>
                     <Dropdown.Item><NavLink className="dropdown-item" exact to="/jams/add">Add Jam</NavLink></Dropdown.Item>
                     <Dropdown.Item><NavLink className="dropdown-item" exact to="/users">Users</NavLink></Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Nav.Item as="li">
+                      <Button className="nav-btn" onClick={logoutUser}>Log Out</Button>
+                    </Nav.Item>
                   </>
-                }
+                ) : (
+                  <>
+                    <Dropdown.Divider />
+                    <Nav.Item as="li">
+                      <Button className="nav-btn" onClick={() => setSignupShow(true)}>
+                        Sign Up
+                      </Button>
+                    </Nav.Item>
+                      <Signup
+                        show={signupShow}
+                        onHide={() => setSignupShow(false)}
+                        setSignupShow={setSignupShow}
+                        setLoginShow={setLoginShow}
+                      />
+                    <Nav.Item as="li">
+                      <Button className="nav-btn" onClick={() => setLoginShow(true)}>
+                        Log In
+                      </Button>
+                    </Nav.Item>
+                      <Login
+                        show={loginShow}
+                        onHide={() => setLoginShow(false)}
+                        setLoggedInUser={setLoggedInUser}
+                        setLoginShow={setLoginShow}
+                        setSignupShow={setSignupShow}
+                      />
+                  </>
+                )}
               </Dropdown.Menu>
             </Dropdown>
-          </Nav>
-        </Col>
-        <Col id="justify-content-center">
-          <Nav as="ul">
-            <Nav.Item as="li">
-              <NavLink exact to="/"><Image src={logo} roundedCircle /></NavLink>
-            </Nav.Item>
+            <p id="logo-text">Jam Session</p>
           </Nav>
         </Col>
         <Col id="justify-content-end">
-          <Nav as="ul">
-            {loggedInUser ? (                
-              <Nav.Item as="li">
-                <Button className="nav-btn" onClick={logoutUser}>Log Out</Button>
-              </Nav.Item>
-            ) : (
-              <>
-                <Nav.Item as="li">
-                  <Button className="nav-btn" onClick={() => setSignupShow(true)}>
-                    Sign Up
-                  </Button>
-                </Nav.Item>
-                  <Signup
-                    show={signupShow}
-                    onHide={() => setSignupShow(false)}
-                    setSignupShow={setSignupShow}
-                    setLoginShow={setLoginShow}
-                  />
-                <Nav.Item as="li">
-                  <Button className="nav-btn" onClick={() => setLoginShow(true)}>
-                    Log In
-                  </Button>
-                </Nav.Item>
-                  <Login
-                    show={loginShow}
-                    onHide={() => setLoginShow(false)}
-                    setLoggedInUser={setLoggedInUser}
-                    setLoginShow={setLoginShow}
-                    setSignupShow={setSignupShow}
-                  />
-              </>
-            )}
+          <Nav>
+            <Nav.Item>
+              <Radio />
+            </Nav.Item>
           </Nav>
         </Col>
       </Row>
