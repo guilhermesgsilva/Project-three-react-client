@@ -14,32 +14,65 @@ const Styles = styled.div`
 
     {
         display: flex;
-        display: flex;
         align-items: center;
-        
+    }
+
+    .btn {
+        font-size: 1.5em;
+        background-color: rgb(0,0,0,0);
+        border: none;
+    }
+
+    .btn:hover {
+        color: #F2BB15;
+    }
+
+    .btn:focus {
+        box-shadow: 0 0 0 0.25rem rgb(49 132 253 / 0%);
     }
 
     p {
+        color: #FFFFFF;
         width: 20vw;
-    }
-
-    audio {
+        margin-bottom: 0;
+        text-align: center;
     }
 
     .rhap_container.controls {
         background-color: rgb(0,0,0,0);
         width: 15vw;
-
     }
 
-    
-
-    .rhap_controls-section .rhap_main-controls button[aria-label="Play"] svg path {
-        fill: #FFFFFF !important;
+    .rhap_stacked .rhap_controls-section {
+        margin-top: 0;
     }
 
-    .rhap_controls-section .rhap_main-controls button[aria-label="Pause"] svg path {
-        fill: #F2BB15 !important;
+    .rhap_main-controls:hover {
+        fill: #F2BB15;
+    }
+
+    .rhap_main-controls button[aria-label="Play"] svg path {
+        fill: #FFFFFF;
+    }
+
+    .rhap_main-controls button[aria-label="Play"]:hover svg path {
+        fill: #F2BB15;
+    }
+
+    .rhap_main-controls button[aria-label="Pause"] svg path {
+        fill: #F2BB15;
+    }
+
+    .rhap_volume-controls svg path {
+        fill:  #FFFFFF;
+    }
+
+    .rhap_volume-bar{
+        background-color:  #5A5A5A;
+    }
+
+    .rhap_volume-indicator{
+        background-color:  #FFFFFF;
     }
 
 `;
