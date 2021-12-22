@@ -1,5 +1,6 @@
 #colors {
   color: #F2BB15;
+  color: #0A121F;
   color: #000000;
   color: #0F0F0F;
   color: #333333;
@@ -20,28 +21,11 @@
 
 @import url(//fonts.googleapis.com/css?family=Caveat);
 
-h3 {
-  font-family: "Caveat";
-}
-
-/* NEW */
+/* ?? */
 
 .background-color-light-blue {
   min-height: 80vh;
 }
-
-.nav {
-  padding: 0.5rem;
-}
-
-/* .footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
-} */
-
-/* ?? */
 
 .align-items-center {
   padding: 10vh;
@@ -64,5 +48,4 @@ h3 {
   height: 50vh;
   object-fit: cover;
 }
-
 

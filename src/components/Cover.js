@@ -73,6 +73,7 @@ const Styles = styled.div`
         text-align: center;
         font-size: 1.75rem;
         margin-top: 7.5vh;
+        font-family: "Caveat";
     }
 
     #learn-more {
