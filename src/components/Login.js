@@ -19,7 +19,7 @@ const Styles = styled.div`
     border: 1px solid #F2BB15;
     border-radius: 0.25rem;
     color: #FFFFFF;
-    background-color: #0A121F;
+    background-color: #000000;
     font-family: "DIN Condensed Bold";
   }
 
@@ -42,6 +42,10 @@ const Styles = styled.div`
     box-shadow: 0 0 0 0.25rem rgb(49 132 253 / 0%);
   }
 
+  .form-control {
+    border: 0;
+  }
+
   .form-control:focus {
     border: 0;
     box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 0%);
@@ -55,14 +59,14 @@ const Styles = styled.div`
 
   #login {
     float: right;
-    color: #0A121F;
+    color: #000000;
     background-color: #F2BB15;
     border: 1px solid #F2BB15;
   }
 
   #login:hover {
     color: #F2BB15;
-    background-color: #0A121F;
+    background-color: #000000;
     border: 1px solid #F2BB15;
   }
 
@@ -121,7 +125,7 @@ function Login(props) {
       centered
     >
       <Styles>
-        <Modal.Header className="test">
+        <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter">
             LOG IN
           </Modal.Title>
