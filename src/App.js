@@ -31,7 +31,7 @@ import styled from "styled-components";
 
 const Styles = styled.div`
     .container-fluid {
-        background: url(//images.weserv.nl/?url=i.imgur.com/6QJjYMe.jpg) center no-repeat;
+        background: url(https://wharf850.com/wp-content/uploads/2019/04/bg-dk-blue-brick-wall.jpg) center no-repeat;
         background-size:cover;
         color: #FFFFFF;
         font-family: "DIN Condensed Bold";

@@ -35,17 +35,27 @@ const Styles = styled.div`
   }
 
   img {
-    height: 3em;
+    height: 3rem;
   }
 
   img:hover {
     border: 1px solid #F2BB15;
   }
 
-  .dropdown-toggle:after {
+  ${'' /* .dropdown-toggle:after {
     display: none; 
-  }
+  } */}
   
+  .dropdown {
+    padding-right: 0.75rem;
+  }
+
+  .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    padding-right: 0.75rem;
+  }
+
   .drop-btn {
     border: none;
     background-color: rgba(0,0,0,0);
@@ -129,7 +139,6 @@ function NavBar({ setLoggedInUser }) {
           <Nav>
             <Dropdown value="Connect">
               <Dropdown.Toggle className="drop-btn" >
-                <Image src={logo} roundedCircle />
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item><NavLink className="dropdown-item" exact to="/">Home</NavLink></Dropdown.Item>
@@ -173,7 +182,7 @@ function NavBar({ setLoggedInUser }) {
               </Dropdown.Menu>
             </Dropdown>
             <Nav.Item>
-              <p id="logo-text">Jam Session</p>
+              <p id="logo-text">Jam <Image src={logo} roundedCircle />Session</p>
             </Nav.Item>
           </Nav>
         </Col>
